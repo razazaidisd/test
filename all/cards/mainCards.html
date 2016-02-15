@@ -1,0 +1,43 @@
+<div class="main-card ease-effect">
+    <div class="main-card-image" style="background: url(../images/events-cards2.jpg) no-repeat top center / cover">
+        <a href="javascript:;">
+            <div class="image-overlay">
+                <div class="user-rounded-thumb user-rounded-36px right-buffer">
+                    <!-- if company or academic card  -->
+                    <img ng-src="{{data.headerImage}}" alt="">
+                </div>
+                <div class="clearfix"></div>
+
+                <!-- if company card -->
+                <h4><strong>{{data.headerInfo}}</strong></h4>
+                <h4>{{data.headerSubInfo}}</h4>
+
+            </div>
+        </a>
+        <div class="position-top-right main-card-dropdown-options" role="group">
+            <a href="javascript:;" type="button" class="dropdown-toggle ver-dotted-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="ver-dots"></i>
+            </a>
+            <ul class="dropdown-menu pull-right dd-arrow-top-right">
+                <li><a href="javascript:;" data-toggle="modal" data-target="#sharePost">Share</a></li>
+                <li><a href="javascript:;" ng-click="remove(item)">Remove Suggestion</a></li>
+            </ul>
+        </div>
+    </div>
+    <a href="javascript:;">
+        <div class="main-card-name">
+            {{data.title}}
+        </div>
+    </a>
+    <div class="main-card-details">
+        <!-- if academic card -->
+        <p ng-repeat="item in data.subInfo">
+            <strong>{{item.title}}: </strong><i class="fa {{item.icon}}"></i>  {{item.info}}
+        </p>
+
+        <div class="top-buffer buttons">
+            <a href="javascript:;" ng-repeat="button in config.actions" ng-click="button.action()" class="{{button.class}} button-small mr5">
+                {{button.title}}
+            </a>
+        </div>
+    </div>

@@ -1,0 +1,21 @@
+<form id="line-search-form" class="line-search-box">
+	<div class="row minimize-gutter">
+		<!-- Options list -->
+		<div class="col-xs-1 as-dropdown-button">
+			<button type="button" 
+					ng-model="vm.selectedOption" 
+					class="cs-dropdown-toggle search-categories" 
+					bs-options="option.value as option.label for option in vm.optionsList" 
+					data-html="1" 
+					template-url="as-dropdown.html" 
+					bs-select>
+			</button>
+		</div>
+		
+		<div class="ease-effect position-static">
+			<button type="submit" class="submit-line-search" hidden="true"><i class="fa fa-search">&nbsp;</i></button>
+			<a class="submit-line-search"><i class="fa fa-search">&nbsp;</i></a>
+			<input type="text" class="line-search" placeholder="{{vm.selectedOption.placeholder}}" style="width:96%;" ng-model="vm.selectedUser" bs-options="user as user.name for user in vm.getUsers($viewValue)" template-url="typeahead-item.html" bs-typeahead>
+		</div>
+	</div>
+</form>

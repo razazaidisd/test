@@ -1,0 +1,89 @@
+
+<div class="banner-content small-font">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="banner-tab-heading">
+                <div class="pull-left font-bold"><a href="#CreatedCourses">Created Courses</a></div>
+                <ul class="list-right">
+                    <li ng-repeat="tab in dv.createdCoursesTab" ng-class="{active: dv.isFirstSet($index)}">
+                        <a href="javascript:;" ng-click="dv.setFirstTab($index)">{{tab}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-block bottom-buffer">
+                <ul class="banner-tab-items list-buffer" ng-show="dv.isFirstSet(0)">
+                    <li ng-repeat="item in dv.createdCourses[0].items | limitTo: 3">
+                        <a ng-href="{{item.pageUrl}}" class="border txt-elp">
+                            <span class="user-rounded-thumb user-rounded-20px vertical-top mr5"><img ng-src="../images/{{item.icon}}" alt=""></span> {{item.title}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#viewAll">View All</a>
+                    </li>
+                </ul>
+                <ul class="banner-tab-items list-buffer" ng-show="dv.isFirstSet(1)">
+                    <li ng-repeat="item in dv.createdCourses[1].items | limitTo: 3">
+                        <a ng-href="{{item.pageUrl}}" class="border txt-elp">
+                            <span class="user-rounded-thumb user-rounded-20px vertical-top mr5"><img ng-src="../images/{{item.icon}}" alt=""></span> {{item.title}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#viewAll">View All</a>
+                    </li>
+                </ul>
+                <ul class="banner-tab-items list-buffer" ng-show="dv.isFirstSet(2)">
+                    <li ng-repeat="item in dv.createdCourses[2].items | limitTo: 3">
+                        <a ng-href="{{item.pageUrl}}" class="border txt-elp">
+                            <span class="user-rounded-thumb user-rounded-20px vertical-top mr5"><img ng-src="../images/{{item.icon}}" alt=""></span> {{item.title}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#viewAll">View All</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="banner-tab-heading">
+                <div class="pull-left font-bold"><a href="#LearningCourses">Learning Courses</a></div>
+                <ul class="list-right">
+                    <li ng-repeat="tab in dv.learningCoursesTab" ng-class="{active: dv.isSecondSet($index)}">
+                        <a href="javascript:;" ng-click="dv.setSecondTab($index)">{{tab}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-block bottom-buffer">
+                <ul class="banner-tab-items list-buffer" ng-show="dv.isSecondSet(0)">
+                    <li ng-repeat="item in dv.learningCourses[0].items | limitTo: 3">
+                        <a ng-href="{{item.pageUrl}}" class="border txt-elp">
+                            <span class="user-rounded-thumb user-rounded-20px vertical-top mr5"><img ng-src="../images/{{item.icon}}" alt=""></span> {{item.title}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#viewAll">View All</a>
+                    </li>
+                </ul>
+                <ul class="banner-tab-items list-buffer" ng-show="dv.isSecondSet(1)">
+                    <li ng-repeat="item in dv.learningCourses[1].items | limitTo: 3">
+                        <a ng-href="{{item.pageUrl}}" class="border txt-elp">
+                            <span class="user-rounded-thumb user-rounded-20px vertical-top mr5"><img ng-src="../images/{{item.icon}}" alt=""></span> {{item.title}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#viewAll">View All</a>
+                    </li>
+                </ul>
+                <ul class="banner-tab-items list-buffer" ng-show="dv.isSecondSet(2)">
+                    <li ng-repeat="item in dv.learningCourses[2].items | limitTo: 3">
+                        <a ng-href="{{item.pageUrl}}" class="border txt-elp">
+                            <span class="user-rounded-thumb user-rounded-20px vertical-top mr5"><img ng-src="../images/{{item.icon}}" alt=""></span> {{item.title}}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#viewAll">View All</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

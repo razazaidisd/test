@@ -1,0 +1,59 @@
+<div class="lolliboard-card">
+    <div class="card-header clearfix">
+        <div class="col-md-5 card-title">
+            <a href="javasscript:;">{{data.title}}</a>
+        </div>
+        <div class="col-md-5 card-desc">
+            {{data.info}}
+        </div>
+        <div class="col-md-2 card-duration">
+            <strong>03</strong>
+            Days left
+        </div>
+    </div>
+    <div class="card-details clearfix">
+        <div class="col-md-5 card-image">
+            <a href="javascript:;"><img ng-src="{{data.image}}" alt=""></a>
+            <div class="thumb-text" ng-if="data.cash">
+                {{data.cash}}
+            </div>
+        </div>
+        <div class="col-md-7 block-minipadding">
+            <div class="position-top-right">
+                <div class="dropdown pull-right bottom-buffer">
+                    <a href="javascript:;" class="ver-dotted-menu vdm-blue dropdown-toggle pull-right" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="ver-dots"></i>
+                    </a>
+                    <ul class="dropdown-menu pull-right dd-arrow-top-right">
+                        <li><a href="javascript:;"><i class="fa fa-comments">&nbsp;</i> Share</a></li>
+                    </ul>
+                </div>
+            </div>
+            <ul>
+                <li class="small-font" ng-repeat="item in data.subInfo">
+                    <strong>
+                        <i ng-if="item.icon" class="fa {{item.icon}} mr5"></i>
+                        <img ng-if="item.img" class="image-17" ng-class="{'mb5':data.image_id}" ng-src="{{item.img}}" alt="" class="mt5">
+                        {{item.label}}
+                    </strong> 
+                    {{item.info}}
+                    
+                    <a href="javascript:;" ng-if="item.sponsor">
+                        <img ng-src="{{item.sponsor}}" alt="" class="image-17 mb5">
+                        {{item.company}}
+                    </a>
+                    <a href="javascript:;" ng-if="item.more">
+                        more by <strong>{{item.more}}</strong>
+                    </a>
+                    
+                </li>
+            </ul>
+            <ul>
+                
+                <li class="text-left small-font">
+                    <a href="javascript:;" class="button-rainbow pull-right">Hire <i class="fa fa-plus"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

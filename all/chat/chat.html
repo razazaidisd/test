@@ -1,0 +1,81 @@
+<div class="chat">
+
+    <div class="chat-listing">
+
+        <div class="chat-box chat-box-show" ng-class="{'chat-box-show': !isOpen}" ng-repeat="single in chat.chatData | limitTo: chat.header.limit">
+
+            <div class="chat-header" ng-click="isOpen = !isOpen">
+                <ul class="pull-right list-left left-buffer">
+                    <li ng-repeat="action in chat.header.actions">
+                        <a href="javascript:;" ng-click="action.href($event)" class="{{action.icon}}"></a>
+                    </li>
+                </ul>
+                <a href="javascript:;" ng-click="chat.toggleChat($event)"><div class="user-rounded-thumb user-rounded-20px pull-left mr5"><img ng-src="../images/{{single.image}}" alt=""></div>{{single.title}}</a>
+            </div>
+
+            <div class="chat-body">
+                <div class="chat-content" ng-class="chatList.sender ? 'chat-content-sender' : 'chat-content-me'" ng-repeat="chatList in single.chatBody">
+                    {{chatList.sender}}
+                    {{chatList.me}}
+                </div>
+            </div>
+
+            <form action="#" name="submitComment" class="chat-footer" ng-init="focus = false; blur = false; active = false" ng-class="{ chatFocused: focus, chatBlurred: blur }" novalidate>
+                <textarea class="chat-input" ng-focus="focus = true; blur = false;" ng-blur="blur = true; focus = false;" placeholder="Please enter text here..." ng-model="chatValue"></textarea>
+                <ul class="position-bottom-right list-left">
+                    <li><label class="button-border button-small auto-width fa fa-paperclip mb0"><input type="file" class="hide"></label></li>
+                    <li><a class="button-border button-small auto-width fa fa-smile-o"></a></li>
+                    <li><button type="submit" ng-click="chat.sendMessage(chatValue)" class="button-border button-small auto-width fa fa-paper-plane"></button></li>
+                </ul>
+            </form>
+
+        </div>
+
+        <div class="chat-hidden" ng-if="chat.chatData.length > chat.header.limit">
+            <a href="javascript:;" class="chat-hidden-action fa fa-comments dropdown-toggle" bs-dropdown data-placement="top-right" aria-haspopup="true" aria-expanded="false">{{chat.chatData.length - chat.header.limit}}</a>
+            <ul class="dropdown-menu dd-arrow-bottom-right" role="menu">
+                <li ng-repeat="hiddenChat in chat.chatData | limitTo : chat.chatData.length : chat.header.limit">
+                    <a href="javascript:;">{{hiddenChat.title}}</a>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div class="chat-sidebar" ng-class="{'chat-sidebar-minimize': isMinimized}">
+
+        <div class="chat-sidebar-search">
+            <input type="text" class="input-text" placeholder="Search here">
+        </div>
+
+        <div class="chat-sidebar-listing">
+            <ul class="list-user">
+                <li ng-repeat="listing in chat.data">
+
+                    <a href="javascript:;" class="lu-box" ng-click="chat.copyObject(listing)">
+                        <div class="user-rounded-thumb user-rounded-36px pull-left right-buffer">
+                            <img ng-src="../images/{{listing.image}}" alt="">
+                        </div>
+                        <div class="lu-content overflow-hidden">
+                            <div class="lu-action-top xsmall-font pull-right">5m</div>
+                            <div class="lu-title txt-elp small-font">{{listing.title}}</div>
+                            <div class="lu-txt txt-elp">{{listing.designation}}</div>
+                        </div>
+                    </a>
+
+                </li>
+            </ul>
+        </div>
+
+        <ul class="chat-sidebar-tab row remove-gutter text-center">
+            <li class="col-xs-3 active"><a href="javascript:;" class="fa fa-commenting-o"></a></li>
+            <li class="col-xs-3"><a href="javascript:;" class="fa fa-hourglass-end"></a></li>
+            <li class="col-xs-3"><a href="javascript:;" class="fa fa-users"></a></li>
+            <li class="col-xs-3"><a href="javascript:;" class="fa fa-paper-plane-o"></a></li>
+        </ul>
+
+        <a href="javascript:;" class="chat-sidebar-toggle fa fa-angle-double-right" ng-click="isMinimized = !isMinimized"></a>
+
+    </div>
+
+</div>

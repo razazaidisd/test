@@ -1,0 +1,31 @@
+
+<div class="managelist-box block-main">
+
+    <a ng-href="{{card.pageUrl}}" class="card-managelist block-padding" ng-repeat="card in data">
+
+        <!-- Card Logo -->
+        <div class="user-rounded-thumb user-rounded-50px block-minipadding pull-left right-buffer"><img ng-src="../images/{{card.icon}}" alt=""></div>
+
+        <!-- Card Status/Action -->
+        <div class="card-managelist-status cms-{{card.statusColor}} card-status pull-right">{{card.status}}</div>
+
+        <!-- Card Description -->
+        <div class="card-managelist-desc">
+
+            <div class="card-managelist-title txt-elp font-bold">{{card.title}}</div>
+
+            <ul class="card-managelist-sublist small-font">
+
+                <!-- Array of Card Description List -->
+                <li class="txt-elp" ng-repeat="item in card.subitems">
+                    <strong ng-if="item.label">{{item.label}}: </strong>
+                    <span>{{item.name}}</span>
+                </li>
+                
+            </ul>
+
+        </div>
+
+    </a>
+
+</div>

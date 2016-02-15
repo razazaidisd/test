@@ -1,0 +1,64 @@
+<div class="six-column-card-final">
+    <div class="row minimize-gutter">
+        <div class="col-md-2 profile-image">
+            <a href="javascript:;">
+                <img ng-src="{{data.image}}" alt="" />
+            </a>
+        </div>
+        <div class="col-md-8 description">
+            <div class="name">
+                <a href="javascript:;">{{data.name}}</a>
+                <img ng-if="data.featured" src="../images/bond-icon.png" alt=""/>
+            </div>
+            <div class="details" ng-repeat="item in data.subInfo">
+                <img ng-if="item.icon" ng-src="{{item.icon}}" alt=""> <strong>{{item.title}}</strong>{{item.info}}
+            </div>
+        </div>
+        <div class="col-md-2 profile-video">
+            <a href="../images/video.mp4" class="btm_button iframe cboxElement" data-toggle="tooltip" data-placement="top" title="" data-original-title="Video"><img src="../images/video-icon.png" alt="" /></a>
+        </div>
+    </div>
+    <div class="row minimize-gutter" ng-repeat="item in data.featuredInfo" ng-show="data.featured">
+        <div class="col-md-2 text-right top-buffer">
+            <p>
+                <i class="fa {{item.icon}}"></i>
+                <strong>{{item.title}}</strong>
+            </p>
+        </div>
+        <div class="col-md-10 top-buffer past-posts">
+            
+            <div class="tag-text tag-xsmall tag-border" ng-repeat="tag in item.tags">
+                {{tag}}
+            </div>
+            
+            <p ng-bind-html="item.info">
+               
+            </p>
+        </div>
+    </div>
+    <div class="row minimize-gutter">
+        <div class="col-md-7 top-buffer">
+            <ul class="social">
+                <li ng-repeat="item in data.stats">
+                    <img ng-if="item.image" ng-src="{{item.image}}" alt="">
+                    <i class="fa {{item.icon}}"></i>
+                    <a href="javascript:;">{{item.info}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-5 text-right top-buffer">
+            <toggle-button button-config="config.action" complete-state="config.actionFunc()">
+            </toggle-button>
+            <div class="dropdown pull-right ml5">
+                <a href="javascript:;" class="ver-dotted-menu dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="ver-dots"></i>
+                </a>
+                <ul class="dropdown-menu pull-right" aria-labelledby="dropdownMenu1">
+                    <li ng-repeat="item in config.dropdown">
+                        <a href="javascript:;"> {{item.title}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

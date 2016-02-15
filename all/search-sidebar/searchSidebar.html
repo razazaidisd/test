@@ -1,0 +1,32 @@
+<form class="sidebar-filters-box" action="#" method="post">
+					<div class="block-main main-search">
+						<div class="block-heading">
+							<div class="block-title text-left">
+								<i class="{{data.icon}}"></i>
+								<span>{{data.title}}</span>
+							</div>
+						</div>
+						<div class="block-padding top-main-filters pb0">
+							<div class="small-font bottom-buffer">
+								<div class="dropdown pull-left mr5">
+		                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i class="fa fa-cog"></i></a>
+		                            <div class="dropdown-menu">
+		                                <ul>
+		                                    <li><a href="javascript:;" data-toggle="modal" data-target="#saved-search">Saved Search</a></li>
+		                                </ul>
+		                            </div>
+		                        </div>
+		                        <a href="javascript:;" class="pull-left" data-toggle="modal" data-target="#save-search" data-val="save-in">Save Search</a>
+							</div>
+						</div>
+						<hr/>
+						<div class="block-padding">
+							<form action="" ng-submit="data.onSubmit()">
+	                            <formly-form model="data.model" fields="data.fields"></formly-form>
+	                            <button type="submit" class="btn btn-block btn-primary submit-button">Filter</button>
+	                        </form>
+	                        <h2>Model</h2>
+	                        <pre>{{data.model | json}}</pre>
+						</div>
+					</div>
+				</form>

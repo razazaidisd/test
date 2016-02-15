@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html ng-app="App">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body ng-controller="tabsCtrl">
+        <ul>
+            <li ng-click="tab(1)">Recent items</li>
+            <li ng-click="tab(2)">Popular items</li>
+        </ul>
+        <ul>
+            <li ng-repeat='product in products'>{{product.Name}}</li>
+        </ul>
+        {{products || json}}
+
+        <script type="text/javascript">
+            var app = angular.module('App', []);
+
+            app.factory('products', function ($http, $q) {
+                return {
+                    items: function (url) {
+                        //create our deferred object.
+                        var deferred = $q.defer();
+
+                        //make the call.
+                        $http.get(url).success(function (data) {
+                            //when data is returned resolve the deferment.
+                            deferred.resolve(data);
+                        }).error(function () {
+                            //or reject it if there's a problem.
+                            deferred.reject();
+                        });
+
+                        //return the promise that work will be done.
+                        return deferred.promise;
+                    }
+                }
+            });
+
+            app.controller("tabsCtrl", function ($scope, products) {
+                $scope.products = products.items('/api/products');
+
+                $scope.tab = function (tabIndex) {
+                    if (tabIndex == 1)
+                    $scope.products = products.items('/api/products');
+                    if (tabIndex == 2)
+                    $scope.products = products.items('/api/popularproducts');
+                };
+            });
+        </script>
+    </body>
+</html>

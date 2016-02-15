@@ -1,0 +1,71 @@
+<div class="block-main">
+    <div class="block-heading">
+        <div class="block-title">
+
+            <!-- Show main Title and icon if found -->
+            <i class="{{config.headerIcon}} right-buffer"></i>{{config.headerTitle}}
+
+            <!-- Section for creating new element -->
+            <a ng-if="config.addLink" ng-href="{{config.addLink}}" class="base-font pull-right">+</a>
+        </div>
+    </div>
+    <ul class="list-user list-border-ver">
+        <li ng-repeat="item in data | limitTo:config.maxItems">
+
+            <!-- Section for Card Link & Details -->
+            <div class="lu-box" ng-class="{'lu-link' : item.link}">
+
+                <!-- Card Thumbnails -->
+                <div class="user-rounded-thumb user-rounded-36px pull-left right-buffer">
+                    <img ng-src="../{{item.image}}" alt="">
+                </div>
+
+                <!-- Card Details | Time, Title, Company Name, Designation, Location -->
+                <div class="lu-content lu-content-border overflow-hidden">
+
+                    <!-- Show Time if found in array -->
+                    <div class="lu-action-top xsmall-font pull-right" ng-if="item.time">{{item.time}}</div>
+
+                    <!-- Show Title if found in array -->
+                    <div class="lu-title txt-elp small-font" ng-if="item.title">{{item.title}}</div>
+
+                    <div class="lu-title" ng-if="item.post">{{item.post}}</div>
+
+                    <!-- Show Company Name/Designation/Location if found in array -->
+                    <div class="lu-txt txt-elp" ng-repeat="sub in item.subInfo" ng-if="sub">
+                        <i ng-if="sub.icon" ng-class="sub.icon"></i> <span></span>{{sub.info}}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section for Action Buttons -->
+            <!-- Action Button:     if action obj is passed in config -->
+            <!-- Dropdown Button:   if actionDropdown obj is passed in config -->
+            <div ng-if="config.actions || config.actionDropdown" class="lu-action ease-effect">
+
+                <!-- Action Button if passed in the config -->
+                <a ng-if="action" ng-click="remove(item)" class="button button-bond button-xsmall right-buffer" ng-repeat="action in config.actions">
+                    <i ng-class="action.buttonIcon">&nbsp;</i> {{action.buttonTitle}}
+                </a>
+
+                <!-- Dropdown menu used in case where we have multiple options -->
+                <div ng-if="config.actionDropdown" class="actionDropdown vertical-top"> <!-- dd = dropdown -->
+                    <a href="javascript:;" class="button button-xsmall dropdown-toggle" bs-dropdown data-placement="bottom-right" aria-haspopup="true" aria-expanded="false">
+                        <i ng-class="config.actionDropdown.ddIcon"></i> {{config.actionDropdown.ddTitle}}
+                    </a>
+                    <ul class="dropdown-menu dd-arrow-top-right" role="menu">
+                        <li ng-repeat="ddList in config.actionDropdown.ddList">
+                            <a ng-href="{{ddList.link}}"><i ng-if="ddList.icon" ng-class="ddList.icon"></i> {{ddList.text}}</a>
+                        </li>
+                    </ul>
+                </div>
+			</div>
+        </li>
+        <li ng-if="data.length > config.maxItems">
+            <a ng-href="{{config.viewLink}}" class="lu-box text-right">All</a>
+        </li>
+    </ul>
+    <div ng-if="data.length < 1" class="block-padding">
+        No content
+    </div>
+</div>

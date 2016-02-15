@@ -1,0 +1,82 @@
+<div class="wall-post-block wp-{{postData.postType}} individual">
+    <div class="wall-post-header">
+        <a href="javascript:;" class="user-rounded-thumb user-rounded-44px"><img ng-src="../images/{{postData.header.image}}" alt=""></a>
+        <div class="wall-post-title">
+            <a class="wall-post-username" ng-href="{{postData.header.link}}">{{postData.header.title}}</a>
+            <span class="wall-user-activity">{{postData.header.activity}} <i class="fa"></i></span>
+            <a class="wall-post-time" href="javascript:;">{{postData.header.time}}</a>
+        </div>
+        <div class="wall-post-setting">
+            <div class="actionDropdown vertical-top">
+                <a href="javascript:;" class="dropdown-toggle" bs-dropdown data-placement="bottom-right" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-cog"></i>
+                </a>
+                <ul class="dropdown-menu dd-arrow-top-right" role="menu">
+                    <li ng-repeat="ddActions in postConfig.settings">
+                        <a href="javascript:;" ng-click="ddActions.action($event)"><i ng-class="ddActions.icon"></i> {{ddActions.title}}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="block-padding">
+        <p ng-if="postData.postBody.bodyText" ng-bind-html="postData.postBody.bodyText"></p>
+        <p ng-if="postData.postBody.bodyImage"><img ng-src="../images/{{postData.postBody.bodyImage}}" alt="" class="full-width"></p>
+        <ul class="list-left small-font">
+            <li>
+                <a href="javascript:;" ng-click="postConfig.postActions.acePost(postData)">
+                    <i class="fa fa-thumbs-o-up">&nbsp;</i> Ace <span class="psuedo-brackets">{{postData.postCount.ace}}</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" ng-click="showComments = ! showComments">
+                    <i class="fa fa-comment">&nbsp;</i> Comments <span class="psuedo-brackets">{{postData.postComments.length}}</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" ng-click="postConfig.postActions.sharePost(postData)" data-animation="am-fade-and-scale" data-placement="center" data-template-url="wallPost/sharePost.html" bs-modal="modal">
+                    <i class="fa fa-share-alt">&nbsp;</i> Share <span class="psuedo-brackets">{{postData.postCount.share}}</span>
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <ul class="list-user list-border-ver bottom-buffer" ng-show="showComments">
+            <!-- <li>
+                <a href="javascript:;" class="button-border button-small button-dashed full-width" ng-click="showMoreComments = ! showMoreComments">See All 14 Comments</a>
+            </li> -->
+            <li ng-repeat="comment in postData.postComments">
+                <div class="lu-box">
+                    <div class="user-rounded-thumb user-rounded-36px pull-left right-buffer"><img ng-src="../images/{{comment.image}}" alt=""></div>
+                    <div class="lu-content overflow-hidden">
+                        <a ng-href="{{comment.link}}" class="lu-title txt-elp base-font font-bold">{{comment.title}}</a>
+                        <div class="lu-txt mb5">{{comment.content}}</div>
+                        <ul class="list-left list-border-hor small-font pull-left">
+                            <li><a href="javascript:;">{{comment.time}}</a></li>
+                            <li><a href="javascript:;" ng-click="postConfig.commentActions.aceComment(comment)"><i class="fa fa-thumbs-up"></i> Ace <span class="psuedo-brackets">{{comment.commentCount.ace}}</span></a></li>
+                            <li><a href="javascript:;" ng-click="showReply = ! showReply"><i class="fa fa-reply"></i> Reply <span ng-if="comment.reply" class="psuedo-brackets">{{comment.reply.length}}</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <ul class="reply-user" ng-show="showReply">
+                    <li ng-repeat="reply in comment.reply">
+                        <div class="lu-box">
+                            <div class="user-rounded-thumb user-rounded-26px pull-left right-buffer"><img ng-src="../images/{{reply.image}}" alt=""></div>
+                            <div class="lu-content overflow-hidden">
+                                <a ng-href="{{reply.link}}" class="lu-title txt-elp base-font font-bold">{{reply.title}}</a>
+                                <div class="lu-txt mb5">{{reply.content}}</div>
+                                <ul class="list-left list-border-hor small-font pull-left">
+                                    <li><a href="javascript:;">{{reply.time}}</a></li>
+                                    <li><a href="javascript:;" ng-click="postConfig.replyActions.aceReply(reply)"><i class="fa fa-thumbs-up"></i> Ace <span ng-if="reply.replyCount.ace" class="psuedo-brackets">{{reply.replyCount.ace}}</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <li ng-controller="postCommentView as pc">
+                        <post-comment destination="comment.reply"></post-comment>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <post-comment destination="postData.postComments" on-submission="mainComment()"></post-comment>
+    </div>
+</div>
